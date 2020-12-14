@@ -34,11 +34,13 @@ function objToSql(ob) {
 
 const orm = {
     selectAll: function (table, cb) {
+        
         let queryString = "SELECT * FROM " + table + ";";
         connection.query(queryString, function (err, res) {
             if (err) throw err;
             cb(res)
         })
+        
     },
 
     insertOne: function (table, cols, newVals, cb) {
@@ -54,6 +56,7 @@ const orm = {
     },
 
     update: function (table, newColVal, condition, cb) {
+        console.log("values", table, newColVal, condition)
         let queryString = "UPDATE " + table;
 
         queryString += " SET " + objToSql(newColVal);

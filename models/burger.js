@@ -2,7 +2,8 @@ const orm = require("../config/orm");
 
 const burger = {
     all: function (cb) {
-        orm.selectAll("burgers", function (err, res) {
+        
+        orm.selectAll("burgers", function (res, err) {
             if (err) throw err;
             cb(res);
         });
@@ -15,8 +16,8 @@ const burger = {
         });
     },
 
-    update: function (newColVal, condition, cb) {
-        orm.update("burgers", newColVal, condition, function (err, res) {
+    update: function (newColVal, eaten, cb) {
+        orm.update("burgers", newColVal, eaten, function (res, err) {
             if (err) throw err;
             cb(res);
         });

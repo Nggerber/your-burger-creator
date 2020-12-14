@@ -35,6 +35,9 @@
                 {{this.burger_name}}
             </p>
         </li>
+        {{/if}}
+        {{/each}}
+
     </ul>
 </div>
 
@@ -50,10 +53,10 @@
             type: "POST",
             data: newBurger
         })
-        .then(function () {
-            location.reload();
+            .then(function () {
+                location.reload();
 
-        });
+            });
     });
 
     //swith status of the burger
@@ -65,12 +68,15 @@
             devoured: true
         };
 
-        $.ajax("/api/burgers/${id}", {
+        $.ajax(`/api/burgers/${id}`, {
             type: "PUT",
-            data: eaten
+            data: eaten,
+            success: function () {
+                console.log("sucess")
+                location.reload();
+
+            }
         })
-        .then(function (){
-            location.reload;
-        });
+            
     });
 </script>

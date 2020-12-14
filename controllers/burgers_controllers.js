@@ -7,12 +7,15 @@ const router = express.Router();
 //create all of the rotes and set logic for those routes
 
 router.get("/", function (req, res) {
+    
     burger.all(function (data) {
         let burgerObject = {
             burgers: data
         };
+    
         res.render("index", burgerObject);
     });
+    // res.render("index", {})
 });
 
 // route to post new burger to the list
@@ -32,12 +35,13 @@ router.put("/api/burgers/:id", function (req, res){
 
     burger.update(
         {devoured: true},
-        status, function (result) {
+        eaten, 
+        function (result) {
             if(result.changedRows === 0) {
                 return res.status(404).end();
             }
             else {
-                res.status(200).end
+                res.status(200).end()
             }
         }
     )
