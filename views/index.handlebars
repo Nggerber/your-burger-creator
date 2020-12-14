@@ -1,0 +1,66 @@
+<h1>DO YOU DARE EAT THESE BURGERS</h1>
+
+<div class="order-container">
+    <h2>Would you like to add your burger to the list</h2>
+    <form id="new-burger">
+        <textarea name="burger-input"></textarea>
+        <button type="submit">Eat this Burger!</button>
+    </form>
+</div>
+
+<div class="current-burgers">
+    <h3>You can eat these burgers..... if you dare!</h3>
+    <ul>
+        {{#each burgers}}
+        {{#unless devoured}}
+
+        <li>
+            <p>
+                {{this.burger_name}}
+            </p>
+            <button data-burger-id="{{this.id}}" class="eat-burger">EAT IT!!!</button>
+        </li>
+        {{/unless}}
+        {{/each}}
+    </ul>
+</div>
+
+<div class="burgers-eaten">
+    <h3>You ate em!</h3>
+    <ul>
+        {{#each burgers}}
+        {{#if devoured}}
+        <li>
+            <p>
+                {{this.burger_name}}
+            </p>
+        </li>
+    </ul>
+</div>
+
+<script>
+    // add a burger to the list
+    $("#new-burger").on("submit", function (event) {
+        event.preventDefault();
+        let userBurger = {
+            burger_name: $("#new-burger").val()
+        };
+
+        $.ajax("/api/burgers", {
+            type: "POST",
+            data: newBurger
+        });
+        .then(function () {
+            location.reload();
+
+        });
+    });
+
+    //swith status of the burger
+
+
+
+
+
+
+</script>
