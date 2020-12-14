@@ -49,7 +49,7 @@
         $.ajax("/api/burgers", {
             type: "POST",
             data: newBurger
-        });
+        })
         .then(function () {
             location.reload();
 
@@ -57,10 +57,20 @@
     });
 
     //swith status of the burger
+    $(".eat-burger").on("click", function (event) {
+        event.preventDefault();
 
+        let id = event.currentTarget.getAttribute("data-burger-id");
+        let eaten = {
+            devoured: true
+        };
 
-
-
-
-
+        $.ajax("/api/burgers/${id}", {
+            type: "PUT",
+            data: eaten
+        })
+        .then(function (){
+            location.reload;
+        });
+    });
 </script>
