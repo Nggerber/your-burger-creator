@@ -3,8 +3,8 @@
 <div class="order-container">
     <h2>Would you like to add your burger to the list</h2>
     <form id="new-burger">
-        <textarea name="burger-input"></textarea>
-        <button type="submit">Eat this Burger!</button>
+        <textarea id="burger-input" name="burger-input"></textarea>
+        <button id="new-burger-btn" type="submit">Eat this Burger!</button>
     </form>
 </div>
 
@@ -46,37 +46,35 @@
     $("#new-burger").on("submit", function (event) {
         event.preventDefault();
         let userBurger = {
-            burger_name: $("#new-burger").val()
+            burger_name: $("#burger-input").val()
         };
+        console.log($("#burger-input").val())
 
         $.ajax("/api/burgers", {
             type: "POST",
-            data: newBurger
-        })
-            .then(function () {
+            data: userBurger,
+            success: function () {
+                console.log("Made the burger")
                 location.reload();
-
-            });
+            }
+        });
     });
 
     //swith status of the burger
     $(".eat-burger").on("click", function (event) {
         event.preventDefault();
-
         let id = event.currentTarget.getAttribute("data-burger-id");
         let eaten = {
             devoured: true
         };
-
         $.ajax(`/api/burgers/${id}`, {
             type: "PUT",
             data: eaten,
             success: function () {
-                console.log("sucess")
                 location.reload();
-
             }
-        })
-            
+        });
+
     });
+
 </script>

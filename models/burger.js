@@ -10,7 +10,7 @@ const burger = {
     },
 
     create: function (cols, newVals, cb) {
-        orm.insertOne("burgers", cols, newVals, function (err, res) {
+        orm.insertOne("burgers", cols, newVals, function (res, err) {
             if (err) throw err;
             cb(res);
         });
