@@ -1,45 +1,52 @@
-<h1>DO YOU DARE EAT THESE BURGERS</h1>
+<h1>DO YOU DARE EAT THESE BURGERS!!!!!</h1>
+<img src="../assets/burger.png" alt="burger">
 
 <div class="order-container">
     <h2>Would you like to add your burger to the list</h2>
     <form id="new-burger">
         <textarea id="burger-input" name="burger-input"></textarea>
-        <button id="new-burger-btn" type="submit">Eat this Burger!</button>
+        <button id="new-burger-btn" type="submit">Make this Burger!</button>
     </form>
 </div>
+<br>
+<br>
+<section class="container">
 
-<div class="current-burgers">
-    <h3>You can eat these burgers..... if you dare!</h3>
-    <ul>
-        {{#each burgers}}
-        {{#unless devoured}}
+    <div class="current-burgers">
+        <h3>You can eat these burgers..... if you dare!</h3>
+        <ul>
+            {{#each burgers}}
+            {{#unless devoured}}
 
-        <li>
-            <p>
-                {{this.burger_name}}
-            </p>
-            <button data-burger-id="{{this.id}}" class="eat-burger">EAT IT!!!</button>
-        </li>
-        {{/unless}}
-        {{/each}}
-    </ul>
-</div>
+            <ul>
+                <p>
+                    {{this.burger_name}}
+                    <button data-burger-id="{{this.id}}" class="eat-burger">EAT IT!!!</button>
+                </p>
 
-<div class="burgers-eaten">
-    <h3>You ate em!</h3>
-    <ul>
-        {{#each burgers}}
-        {{#if devoured}}
-        <li>
-            <p>
-                {{this.burger_name}}
-            </p>
-        </li>
-        {{/if}}
-        {{/each}}
+            </ul>
+            {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
 
-    </ul>
-</div>
+    <div class="burgers-eaten">
+        <h3>You ate em!</h3>
+        <ul>
+            {{#each burgers}}
+            {{#if devoured}}
+            <ul>
+                <p>
+                    {{this.burger_name}}
+                </p>
+            </ul>
+            {{/if}}
+            {{/each}}
+
+        </ul>
+    </div>
+</section>
+
 
 <script>
     // add a burger to the list

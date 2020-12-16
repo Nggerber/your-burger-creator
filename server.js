@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 const routes = require("./controllers/burgers_controllers");
 
+app.use(express.static(__dirname + '/public'));
+
 //middleware
 
 app.use(express.urlencoded({extended: true}));
